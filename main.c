@@ -9,7 +9,6 @@
 #include "doubly_linked_list.h"
 
 int main(int argc, const char * argv[]) {
-
   
   return 0;
 }
