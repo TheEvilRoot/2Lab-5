@@ -1,6 +1,6 @@
 #include "doubly_linked_list.h"
 
-DoublyLinkedListNode * newDoublyLinkedListNode(payload data) {
+DoublyLinkedListNode * newDoublyLinkedListNode(int data) {
   DoublyLinkedListNode *node = (DoublyLinkedListNode*) calloc(1, sizeof(DoublyLinkedListNode));
   node->data = 0;
   node->data = data;
@@ -25,15 +25,7 @@ DoublyLinkedListMinMaxHolder * newMinMaxHolder(DoublyLinkedListNode *min, Doubly
   return holder;
 }
 
-DoublyLinkedList * doubleLinkedListOf(payload *items, int count) {
-  DoublyLinkedList *list = emptyDoublyLinkedList();
-  for (int i = 0; i < count; i++) {
-    dllAppend(list, items[i]);
-  }
-  return list;
-}
-
-void dllAddAfter(DoublyLinkedList *list, DoublyLinkedListNode *node, payload data) {
+void dllAddAfter(DoublyLinkedList *list, DoublyLinkedListNode *node, int data) {
   DoublyLinkedListNode *newNode = newDoublyLinkedListNode(data);
   newNode->prev = node;
   if (node->next == NULL) {
@@ -45,7 +37,7 @@ void dllAddAfter(DoublyLinkedList *list, DoublyLinkedListNode *node, payload dat
   node->next = newNode;
 }
 
-void dllAddBefore(DoublyLinkedList *list, DoublyLinkedListNode *node, payload data) {
+void dllAddBefore(DoublyLinkedList *list, DoublyLinkedListNode *node, int data) {
   DoublyLinkedListNode *newNode = newDoublyLinkedListNode(data);
 
   newNode->next = node;
@@ -60,7 +52,7 @@ void dllAddBefore(DoublyLinkedList *list, DoublyLinkedListNode *node, payload da
 }
 
 // Add to start
-void dllPush(DoublyLinkedList *list, payload data) {
+void dllPush(DoublyLinkedList *list, int data) {
 
   if (list->first == NULL) {
     DoublyLinkedListNode *newNode = newDoublyLinkedListNode(data);
@@ -73,7 +65,7 @@ void dllPush(DoublyLinkedList *list, payload data) {
 }
 
 // Add to end
-void dllAppend(DoublyLinkedList *list, payload data) {
+void dllAppend(DoublyLinkedList *list, int data) {
   if (list->last == NULL) {
     dllPush(list, data);
   } else {
@@ -125,12 +117,12 @@ int dllIsEmpty(DoublyLinkedList *list) {
   return list->first == NULL && list->last == NULL;
 }
 
-payload dllPop(DoublyLinkedList *list) {
+int dllPop(DoublyLinkedList *list) {
   if (list->first == NULL) {
     return -1;
   }
 
-  payload popped = list->first->data;
+  int popped = list->first->data;
 
   list->first = list->first->next;
   list->first->prev = NULL;
@@ -138,12 +130,12 @@ payload dllPop(DoublyLinkedList *list) {
   return popped;
 }
 
-payload dllEndPop(DoublyLinkedList *list) {
+int dllEndPop(DoublyLinkedList *list) {
   if (list->last == NULL) {
     return -1;
   }
 
-  payload popped = list->last->data;
+  int popped = list->last->data;
 
   list->last = list->last->prev;
   list->last->next = NULL;
@@ -151,7 +143,7 @@ payload dllEndPop(DoublyLinkedList *list) {
   return popped;
 }
 
-DoublyLinkedListNode * dllFind(DoublyLinkedList *list, payload value) {
+DoublyLinkedListNode * dllFind(DoublyLinkedList *list, int value) {
 
   if (list->first == NULL) {
     return NULL;
@@ -191,7 +183,7 @@ DoublyLinkedListMinMaxHolder * dllFindMinMax(DoublyLinkedList *list) {
   return newMinMaxHolder(min, max);
 }
 
-void dllRemoveWith(DoublyLinkedList *list, payload value) {
+void dllRemoveWith(DoublyLinkedList *list, int value) {
   DoublyLinkedListNode *node = list->first;
 
   while (node != NULL) {
@@ -216,7 +208,7 @@ void dllRemoveWith(DoublyLinkedList *list, payload value) {
   }
 }
 
-void dllRemoveAllWith(DoublyLinkedList *list, payload value) {
+void dllRemoveAllWith(DoublyLinkedList *list, int value) {
   DoublyLinkedListNode *node = list->first;
 
   while (node != NULL) {
@@ -240,19 +232,7 @@ void dllRemoveAllWith(DoublyLinkedList *list, payload value) {
   }
 }
 
-void dllReplace(DoublyLinkedList *list, payload value, payload newValue) {
-  DoublyLinkedListNode *node = list->first;
-
-  while (node != NULL) {
-    if (node->data == value) {
-      node->data = newValue;
-      return;
-    }
-    node = node->next;
-  }
-}
-
-void dllReplaceAll(DoublyLinkedList *list, payload value, payload newValue) {
+void dllReplaceAll(DoublyLinkedList *list, int value, int newValue) {
   DoublyLinkedListNode *node = list->first;
 
   while (node != NULL) {
