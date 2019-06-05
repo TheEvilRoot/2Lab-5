@@ -19,7 +19,7 @@ char * enterString(const char *message) {
 			string[i] = '\0';
 			break;
 		} else {
-      string[i++] = c;
+		    string[i++] = c;
 		}
 
 		if (!(string = (char*)realloc(string, sizeof(char) * (i + 1)))) {
