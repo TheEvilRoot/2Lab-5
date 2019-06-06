@@ -68,12 +68,12 @@ int main(int argc, const char * argv[]) {
 		printf("[7] Remove first\n");
 		printf("[8] Remove last\n");
 		printf("[9] Find\n");
-		printf("[a] Find max and min values\n");
-		printf("[b] Remove by value\n");
-		printf("[c] Remove all by value\n");
-		printf("[d] Edit\n");
-		printf("[e] Is list symmetric\n");
-		printf("[f] Exit the program\n");
+		printf("[10] Find max and min values\n");
+		printf("[11] Remove by value\n");
+		printf("[12] Remove all by value\n");
+		printf("[13] Edit\n");
+		printf("[14] Is list symmetric\n");
+		printf("[15] Exit the program\n");
 
 		int option = enterIntWithBoundary("[1-F]# ", 0, 0xF);
 
@@ -110,11 +110,11 @@ int main(int argc, const char * argv[]) {
                   break;
                 }
                 case 7: {
-                  printf("Value from the head of the list: %d", dllPop(list));
+                  printf("Value from the head of the list: %d\n", dllPop(list));
                   break;
                 }
                 case 8: {
-                  printf("Value from the end of the list: %d", dllEndPop(list));
+                  printf("Value from the end of the list: %d\n", dllEndPop(list));
                   break;
                 }
                 case 9: {
@@ -123,7 +123,7 @@ int main(int argc, const char * argv[]) {
                   if (node == NULL) {
                     printf("Search unsuccessful\n");
                   } else {
-                    printf("Value found: %d", node->data);
+                    printf("Value found: %d\n", node->data);
                   }
                   break;
                 }
